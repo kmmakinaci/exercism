@@ -5,7 +5,11 @@ namespace pangram {
 bool is_pangram(const std::string& sentence) {
         bool letters[26] = {false};
 
-        for (char c : sentence){
+        const char* str = sentence.c_str();
+        
+        while(*str != '\0'){
+                char c = *str;
+
                 // Convert uppercase to lowe case
                 if( c >= 'A' && c <= 'Z' ) {
                         c = c - 'A' + 'a';
@@ -14,6 +18,8 @@ bool is_pangram(const std::string& sentence) {
                 if(c >= 'a' && c <= 'z') {
                         letters[c - 'a'] = true;
                 }
+
+                ++str;
         }
 
         for (int i = 0; i<26; i++){
