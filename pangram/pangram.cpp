@@ -1,25 +1,21 @@
 #include "pangram.hpp"
 #include <cctype>
+#include <unordered_set>
 
 namespace pangram {
 
 bool is_pangram(const std::string& sentence) {
-        bool letters[26] = {false};
+        std::unordered_set<char> letters;
 
         for (char c : sentence) {
-                if(std::isalpha(c)) {
-                        c = std::tolower(c);
-                        letters[c-'a'] = true;
+                if(std::isalpha(static_cast<unsigned char>(c))) {
+                        letters.insert(std::tolower(static_cast<unsigned char>(c)));
                 }
         }
 
-        for(int i = 0; i<26; i++){
-                if (!letters[i]) {
-                        return false;
-                }
-        }
+     constexpr int alphabet_size = 26;
+     return letters.size() == alphabet_size;
 
-        return true;
 }
 
 }
