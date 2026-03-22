@@ -12,6 +12,7 @@ CFLAGS += -pedantic
 CFLAGS += -Werror
 CFLAGS += -Wmissing-declarations
 CFLAGS += -DUNITY_SUPPORT_64 -DUNITY_OUTPUT_COLOR
+CFLAGS += -I..
 
 ASANFLAGS  = -fsanitize=address
 ASANFLAGS += -fno-common
@@ -24,7 +25,7 @@ test: tests.out
 .PHONY: memcheck
 memcheck: ./*.c ./*.h
 	@echo Compiling $@
-	@$(CC) $(ASANFLAGS) $(CFLAGS) test-framework/unity.c ./*.c -o memcheck.out $(LIBS)
+	@$(CC) $(ASANFLAGS) $(CFLAGS) ../test-framework/unity.c ./*.c -o memcheck.out $(LIBS)
 	@./memcheck.out
 	@echo "Memory check passed"
 
@@ -34,4 +35,4 @@ clean:
 
 tests.out: ./*.c ./*.h
 	@echo Compiling $@
-	@$(CC) $(CFLAGS) test-framework/unity.c ./*.c -o tests.out $(LIBS)
+	@$(CC) $(CFLAGS) ../test-framework/unity.c ./*.c -o tests.out $(LIBS)

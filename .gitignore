@@ -1,0 +1,14 @@
+# C exercise build outputs
+c/*/tests.out
+c/*/memcheck.out
+c/*/*.o
+c/*/*.obj
+c/*/*.gcda
+c/*/*.gcno
+
+# Exercism local metadata copied into each exercise
+c/*/.exercism/
+
+# Local editor files
+.vscode/launch.json
+.wsl-local.env
