@@ -1,0 +1,78 @@
+sum_of_squares:
+        push    rbp
+        mov     rbp, rsp
+        mov     DWORD PTR [rbp-20], edi
+        mov     DWORD PTR [rbp-4], 0
+        mov     DWORD PTR [rbp-8], 0
+        cmp     DWORD PTR [rbp-20], 0
+        jne     .L2
+        mov     eax, 0
+        jmp     .L3
+.L2:
+        mov     DWORD PTR [rbp-4], 0
+        jmp     .L4
+.L5:
+        mov     eax, DWORD PTR [rbp-4]
+        imul    eax, eax
+        add     DWORD PTR [rbp-8], eax
+        add     DWORD PTR [rbp-4], 1
+.L4:
+        mov     eax, DWORD PTR [rbp-4]
+        cmp     DWORD PTR [rbp-20], eax
+        jnb     .L5
+        mov     eax, DWORD PTR [rbp-8]
+.L3:
+        pop     rbp
+        ret
+square_of_sum:
+        push    rbp
+        mov     rbp, rsp
+        mov     DWORD PTR [rbp-20], edi
+        mov     DWORD PTR [rbp-4], 0
+        mov     DWORD PTR [rbp-8], 0
+        cmp     DWORD PTR [rbp-20], 0
+        jne     .L7
+        mov     eax, 0
+        jmp     .L8
+.L7:
+        mov     DWORD PTR [rbp-4], 0
+        jmp     .L9
+.L10:
+        mov     eax, DWORD PTR [rbp-4]
+        add     DWORD PTR [rbp-8], eax
+        add     DWORD PTR [rbp-4], 1
+.L9:
+        mov     eax, DWORD PTR [rbp-4]
+        cmp     DWORD PTR [rbp-20], eax
+        jnb     .L10
+        mov     eax, DWORD PTR [rbp-8]
+        imul    eax, eax
+.L8:
+        pop     rbp
+        ret
+difference_of_squares:
+        push    rbp
+        mov     rbp, rsp
+        push    rbx
+        sub     rsp, 8
+        mov     DWORD PTR [rbp-12], edi
+        mov     eax, DWORD PTR [rbp-12]
+        mov     edi, eax
+        call    square_of_sum
+        mov     ebx, eax
+        mov     eax, DWORD PTR [rbp-12]
+        mov     edi, eax
+        call    sum_of_squares
+        mov     edx, ebx
+        sub     edx, eax
+        mov     eax, edx
+        mov     rbx, QWORD PTR [rbp-8]
+        leave
+        ret
+main:
+        push    rbp
+        mov     rbp, rsp
+        mov     edi, 5
+        call    square_of_sum
+        pop     rbp
+        ret

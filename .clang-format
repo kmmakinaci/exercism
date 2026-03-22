@@ -1,0 +1,41 @@
+---
+BasedOnStyle: LLVM
+
+# Tabs like kernel
+UseTab: Always
+IndentWidth: 8
+TabWidth: 8
+
+# Line length
+ColumnLimit: 80
+
+# Braces (K&R style)
+BreakBeforeBraces: Linux
+
+# Spacing
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+
+# Pointer style: int *ptr;
+PointerAlignment: Left
+
+# Keep things compact like kernel
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+
+# Includes
+SortIncludes: false
+
+# Alignment (kernel avoids fancy alignment)
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+
+# Preprocessor
+IndentPPDirectives: None
+
+# Switch
+IndentCaseLabels: true
+
+# Misc
+MaxEmptyLinesToKeep: 1
+KeepEmptyLinesAtTheStartOfBlocks: false

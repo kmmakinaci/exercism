@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Find staged C and header files
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(c|h)$')
+
+if [ -z "$FILES" ]; then
+    exit 0
+fi
+
+echo "Running clang-format on C files..."
+
+for file in $FILES; do
+    if [ -f "$file" ]; then
+        clang-format -i "$file"
+        git add "$file"
+    fi
+done
+
+exit 0
